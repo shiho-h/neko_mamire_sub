@@ -1,24 +1,26 @@
-# README
+# ねこまみれ
+アプリURL　neko_mamire
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+猫画像交流サイト
 
-Things you may want to cover:
+### サイトテーマ
+猫好きによる、猫であふれている癒しサイト。インスタグラム風な交流サイトです。
+自分の飼い猫や外で出会った猫の素敵な瞬間の画像を共有しあって、いろんな人にみてもらいましょう。よその猫の意外な行動・表情を見ることができそれに対して自分のリアクションを伝えることができるサイトです。また、自分だけのお気に入り猫画像集で毎日楽しみましょう！
 
-* Ruby version
+### テーマを選んだ理由
+猫好きの気持ちで考えたとき猫のいろんな表情を見れて、自分だけのお気に入り集を作れるサイトがほしいと思いサイト作成に至りました。
+また、SNS世代は読むサイトよりも画像メインの見るサイトの方が親しみやすいと考え、インスタグラム風な馴染みをもたせたサイトを思いつきました。
 
-* System dependencies
+### ターゲットユーザ
+猫を飼ってる・猫好きで１０代～３０代の主にSNS慣れしているユーザー
 
-* Configuration
+### 主な利用シーン
+猫の素敵な瞬間を発見したとき。他の猫のいろいろな姿を見たいとき。お気に入り機能で自分の好きな猫画像を集め楽しむことができます。
+タグで抜粋して見たい猫の表情があるとき。
 
-* Database creation
+## 設計書
 
-* Database initialization
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1c798UQAFiJWrCtPnLBpKe7ojIoub1yTAX9lVKuy7AoM/edit?usp=sharing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
