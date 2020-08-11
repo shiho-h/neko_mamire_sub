@@ -4,5 +4,8 @@
   <% end %>
   <%= cat_image.user.name %>
   <%= cat_image.catname %>
-  <%= cat_image.memo %><br>
+  <%= cat_image.memo %>
+  <%= link_to "#{cat_image.comments.count} コメント", cat_image_path(cat_image.id) %>
+ <br>
+
 <% end %>

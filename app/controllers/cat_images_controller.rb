@@ -5,6 +5,7 @@ class CatImagesController < ApplicationController
 
   def show
     @cat_image = CatImage.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

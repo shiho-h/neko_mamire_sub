@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :show]
   get 'users/mypage' => 'users#mypage'
   get 'users/leave' => 'users#leave'
-  resources :cat_images
   get 'cat_image/all' => 'cat_images#all'
   get 'cat_image/rank' => 'cat_images#rank'
+  resources :cat_images do
+  	resources :comments, only: [:create, :destroy]
+  end
   get 'homes/about'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about'

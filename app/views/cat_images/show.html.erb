@@ -24,8 +24,29 @@
         </li>
         <li>
           <i class="fa fa-comment"></i>
-          <a href="#comments">4</a>
+          <%= @cat_image.comments.count %>件コメント
         </li>
       </ul>
       </div>
     </div>
+
+    <%= form_for [@cat_image, @comment] do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    </div>
+  </div>
+  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
+
+ <% @cat_image.comments.each do |comment| %>
+ <%= comment.user.name %>
+ <%= comment.created_at.strftime('%Y/%m/%d') %>
+ <%= comment.message %>
+ <% if comment.user == current_user %>
+            <div>
+              <%= link_to "削除", cat_image_comment_path(comment.cat_image, comment), method: :delete, class: "btn btn-danger pull-right" %>
+            </div>
+          <% end %>
+ <br>
+ <% end %>
