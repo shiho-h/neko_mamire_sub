@@ -1,2 +1,31 @@
-<h1>CatImages#show</h1>
-<p>Find me in app/views/cat_images/show.html.erb</p>
+
+
+    <div class="post-meta-top">
+      <div class="post-image">
+        <%= attachment_image_tag @cat_image, :image, :size =>'480x320' %>
+      </div>
+    </div>
+    <div class="post-content">
+      <h2 class="post-title"><%= @cat_image.catname %></h2>
+      <ul class="meta-info-cells v4 float-wrapper">
+        <li>
+          <i class="fa fa-user"></i>By<a href="#">
+            <%= @cat_image.user.name %></a>
+        </li>
+        <li>
+        <%= @cat_image.memo %>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i><%= @cat_image.created_at.strftime('%Y/%m/%d') %>
+        </li>
+        <li>
+          <i class="fa fa-heart"></i>
+          <a href="#">202 いいね</a>
+        </li>
+        <li>
+          <i class="fa fa-comment"></i>
+          <a href="#comments">4</a>
+        </li>
+      </ul>
+      </div>
+    </div>

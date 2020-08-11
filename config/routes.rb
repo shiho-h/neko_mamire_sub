@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get 'users/mypage' => 'users#mypage'
   get 'users/leave' => 'users#leave'
   resources :cat_images
-  get 'cat_images/all' => 'cat_images#all'
-  get 'cat_images/rank' => 'cat_images#rank'
+  get 'cat_image/all' => 'cat_images#all'
+  get 'cat_image/rank' => 'cat_images#rank'
   get 'homes/about'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about'

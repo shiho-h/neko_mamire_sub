@@ -1,2 +1,8 @@
-<h1>CatImages#index</h1>
-<p>Find me in app/views/cat_images/index.html.erb</p>
+ <% @cat_images.each do |cat_image| %>
+ <%= link_to cat_image_path(cat_image.id) do %>
+  <%= attachment_image_tag cat_image, :image, :size =>'480x320' %>
+  <% end %>
+  <%= cat_image.user.name %>
+  <%= cat_image.catname %>
+  <%= cat_image.memo %><br>
+<% end %>

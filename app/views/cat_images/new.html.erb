@@ -1,2 +1,13 @@
-<h1>CatImages#new</h1>
-<p>Find me in app/views/cat_images/new.html.erb</p>
+<%= form_for(@cat_image) do |f| %>
+  <% if @cat_image.errors.any? %>
+    <%= @cat_image.errors.count %>件のエラーが発生しました
+    <% @cat_image.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <%= f.attachment_field :image %>
+  <%= f.text_field :catname %>
+  <%= f.text_area :memo %>
+  <%= f.submit %>
+<% end %>

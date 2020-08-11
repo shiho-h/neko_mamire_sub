@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_151119) do
+ActiveRecord::Schema.define(version: 2020_08_11_050920) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 2020_08_08_151119) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "catimages", force: :cascade do |t|
+  create_table "cat_images", force: :cascade do |t|
     t.integer "user_id"
     t.string "catname"
     t.text "memo"
-    t.string "post_cat_image"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
