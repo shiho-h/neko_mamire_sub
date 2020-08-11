@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+   devise_for :admins, controllers: {
+  sessions: 'admins/sessions'
+}
+  devise_for :users
   resources :admin_users, only: [:index, :show]
   resources :users, only: [:edit, :update, :show]
   get 'users/mypage' => 'users#mypage'
@@ -9,9 +13,6 @@ Rails.application.routes.draw do
   get 'homes/about'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about'
-  devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
-}
-  devise_for :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
