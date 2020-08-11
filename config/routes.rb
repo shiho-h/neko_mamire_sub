@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'cat_image/all' => 'cat_images#all'
   get 'cat_image/rank' => 'cat_images#rank'
   resources :cat_images do
+  	resource :favorites, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]
   end
   get 'homes/about'

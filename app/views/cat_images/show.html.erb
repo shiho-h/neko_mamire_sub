@@ -18,9 +18,27 @@
         <li>
           <i class="fa fa-calendar"></i><%= @cat_image.created_at.strftime('%Y/%m/%d') %>
         </li>
+
+        <!-- いいね関係 -->
+      <% if @cat_image.favorited_by?(current_user) %>
         <li>
-          <i class="fa fa-heart"></i>
-          <a href="#">202 いいね</a>
+        <%= link_to cat_image_favorites_path(@cat_image), method: :delete do %>
+        <%= @cat_image.favorites.count %> ♥
+        <% end %>
+        </li>
+      <% else %>
+        <li>
+        <%= link_to cat_image_favorites_path(@cat_image), method: :post do %>
+        <%= @cat_image.favorites.count %> ♡
+        <% end %>
+        </li>
+      <% end %>
+
+
+
+
+
+
         </li>
         <li>
           <i class="fa fa-comment"></i>
@@ -30,6 +48,9 @@
       </div>
     </div>
 
+
+<!-- コメント関係 -->
+
     <%= form_for [@cat_image, @comment] do |f| %>
   <div class="row">
     <div class="col-sm-12">
@@ -37,16 +58,22 @@
     </div>
   </div>
   <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
+    <% end %>
 
  <% @cat_image.comments.each do |comment| %>
  <%= comment.user.name %>
  <%= comment.created_at.strftime('%Y/%m/%d') %>
  <%= comment.message %>
- <% if comment.user == current_user %>
+  <% if comment.user == current_user %>
             <div>
               <%= link_to "削除", cat_image_comment_path(comment.cat_image, comment), method: :delete, class: "btn btn-danger pull-right" %>
             </div>
-          <% end %>
+  <% end %>
  <br>
  <% end %>
+
+
+<!-- いいね関係 -->
+
+
+
