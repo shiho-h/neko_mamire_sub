@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 }
   devise_for :users
   resources :admin_users, only: [:index, :show]
-  resources :users, only: [:edit, :update, :show]
-  get 'users/mypage' => 'users#mypage'
+  resources :users, only: [:edit, :update, :show] do
+  get 'mypage' , :on => :member
   get 'users/leave' => 'users#leave'
-  get 'cat_image/all' => 'cat_images#all'
-  get 'cat_image/rank' => 'cat_images#rank'
+end
+  get 'cat_images/all' => 'cat_images#all'
+  get 'cat_images/rank' => 'cat_images#rank'
   resources :cat_images do
   	resource :favorites, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]

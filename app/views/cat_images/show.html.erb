@@ -13,10 +13,20 @@
             <%= @cat_image.user.name %></a>
         </li>
         <li>
-        <%= @cat_image.memo %>
+          memo:<%= @cat_image.memo %>
         </li>
         <li>
           <i class="fa fa-calendar"></i><%= @cat_image.created_at.strftime('%Y/%m/%d') %>
+        </li>
+
+
+          <% if @cat_image.user == current_user %>
+          <li>
+           <%= link_to "編集", edit_cat_image_path(@cat_image) %>
+        </li>
+        <li>
+          <%= link_to "削除", cat_image_path(@cat_image), method: :delete %>
+          <% end %>
         </li>
 
         <!-- いいね関係 -->
@@ -35,11 +45,6 @@
       <% end %>
 
 
-
-
-
-
-        </li>
         <li>
           <i class="fa fa-comment"></i>
           <%= @cat_image.comments.count %>件コメント

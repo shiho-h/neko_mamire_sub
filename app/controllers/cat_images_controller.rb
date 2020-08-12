@@ -20,18 +20,26 @@ class CatImagesController < ApplicationController
   end
 
   def edit
+    @cat_image = CatImage.find(params[:id])
   end
 
   def update
+    cat_image = CatImage.find(params[:id])
+    cat_image.update(cat_image_params)
+    redirect_to cat_image_path(cat_image)
   end
 
   def destroy
+    @cat_image = CatImage.find(params[:id])
+    @cat_image.destroy
+    redirect_to cat_images_path
   end
 
   def all
   end
 
   def rank
+    @all_ranks = CatImage.find(Favorite.group(:Cat_image_id).order('count(cat_image_id) desc').limit(10).pluck(:cat_image_id))
   end
 
 private

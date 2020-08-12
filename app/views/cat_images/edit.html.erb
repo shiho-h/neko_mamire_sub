@@ -1,2 +1,9 @@
-<h1>CatImages#edit</h1>
-<p>Find me in app/views/cat_images/edit.html.erb</p>
+ <%= attachment_image_tag @cat_image, :image, :size =>'480x320' %>
+
+<%= form_for(@cat_image) do |f| %>
+  <h4>catname</h4>
+  <%= f.text_field :catname %>
+  <h4>memo</h4>
+  <%= f.text_field :memo %>
+  <%= f.submit '保存' %>
+<% end %>

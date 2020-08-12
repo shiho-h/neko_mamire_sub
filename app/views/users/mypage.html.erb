@@ -1,2 +1,35 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypage.html.erb</p>
+<h1>マイページ</h1>
+name:<%= @user.name %>
+address:<%= @user.email %>
+　<% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+  <% end %>
+
+<br>
+
+
+
+ <% @cat_images.each do |cat_image| %>
+ <%= link_to cat_image_path(cat_image.id) do %>
+  <%= attachment_image_tag cat_image, :image, :size =>'480x320' %>
+  <% end %>
+
+  <%= cat_image.catname %>
+  <%= cat_image.memo %>
+  <%= link_to "#{cat_image.comments.count} コメント", cat_image_path(cat_image.id) %>
+
+ <% if cat_image.favorited_by?(current_user) %>
+  <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
+    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= cat_image.favorites.count %> ♥
+  <% end %>
+<% else %>
+  <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
+    <i class="fa fa-heart-o" aria-hidden="true"></i>
+    <%= cat_image.favorites.count %> ♡
+  <% end %>
+<% end %>
+
+ <br>
+
+<% end %>
