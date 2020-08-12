@@ -42,6 +42,10 @@ class CatImagesController < ApplicationController
     @all_ranks = CatImage.find(Favorite.group(:Cat_image_id).order('count(cat_image_id) desc').limit(10).pluck(:cat_image_id))
   end
 
+  def bookmarks
+    @cat_images = current_user.bookmark_cat_images.includes(:user).recent
+  end
+
 private
   def cat_image_params
     params.require(:cat_image).permit(:catname, :image, :memo)

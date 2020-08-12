@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'bookmarks/create'
+  get 'bookmarks/destroy'
    devise_for :admins, controllers: {
   sessions: 'admins/sessions'
 }
@@ -13,6 +15,10 @@ end
   resources :cat_images do
   	resource :favorites, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]
+    resource :bookmarks, only: [:create, :destroy] do
+      get 'bookmark' , :on => :member
+    end
+
   end
   get 'homes/about'
   root to: 'homes#top'
