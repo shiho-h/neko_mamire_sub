@@ -1,6 +1,11 @@
 class CatImagesController < ApplicationController
   def index
     @cat_images = CatImage.where(created_at: Time.now.all_month)
+
+    if params[:tag_name]
+      @cat_images = CatImage.tagged_with("#{params[:tag_name]}")
+    end
+    
   end
 
   def show
@@ -49,7 +54,8 @@ class CatImagesController < ApplicationController
 
 private
   def cat_image_params
-    params.require(:cat_image).permit(:catname, :image, :memo)
+    params.require(:cat_image).permit(:catname, :image, :memo, :tag_list)
   end
+
 
 end

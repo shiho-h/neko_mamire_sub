@@ -62,6 +62,12 @@
           <% end %>
         </li>
 
+        <li>
+          <% @cat_image.tag_list.each do |tag| %>
+            #<%= link_to tag,cat_images_path(tag_name: tag) %>
+          <% end %>
+        </li>
+
       </ul>
       </div>
     </div>

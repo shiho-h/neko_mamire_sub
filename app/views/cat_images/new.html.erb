@@ -7,7 +7,8 @@
   <% end %>
 
   <%= f.attachment_field :image %>
-  <%= f.text_field :catname %>
-  <%= f.text_area :memo %>
+  catname: <%= f.text_field :catname %>
+  memo: <%= f.text_area :memo %>
+  tag: <%= f.text_field :tag_list, value: @cat_image.tag_list.join(',') %>
   <%= f.submit %>
 <% end %>
