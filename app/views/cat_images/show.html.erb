@@ -9,6 +9,11 @@
       <h2 class="post-title"><%= @cat_image.catname %></h2>
       <ul class="meta-info-cells v4 float-wrapper">
         <li>
+          <%= @cat_image.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </li>
+
+
+        <li>
           <i class="fa fa-user"></i>By<a href="#">
             <%= @cat_image.user.name %></a>
         </li>
