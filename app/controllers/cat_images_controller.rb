@@ -1,6 +1,6 @@
 class CatImagesController < ApplicationController
   def index
-    @cat_images = CatImage.all
+    @cat_images = CatImage.where(created_at: Time.now.all_month)
   end
 
   def show
@@ -36,6 +36,7 @@ class CatImagesController < ApplicationController
   end
 
   def all
+    @cat_images = CatImage.all
   end
 
   def rank
