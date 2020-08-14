@@ -21,6 +21,11 @@
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
 
+      <% elsif admin_signed_in? %>
+      <li>
+        <% link_to "ログアウト",destroy_admin_session_path, method: :delete %>
+      </li>
+
     <% else %>
       <li class="">
         <%= link_to "TOP", root_path %>

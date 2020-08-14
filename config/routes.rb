@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   get 'bookmarks/create'
   get 'bookmarks/destroy'
-   devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
-}
-  devise_for :users
+   devise_for :admins, controllers: {sessions: 'admins/sessions'}
+
+    devise_for :users
   resources :admin_users, only: [:index, :show]
   resources :users, only: [:edit, :update, :show] do
   get 'mypage' , :on => :member
