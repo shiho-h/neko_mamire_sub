@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :show] do
   get 'mypage' , :on => :member
   get 'users/leave' => 'users#leave'
+  member do
+    get "leave"
+    patch "withdrawl"
+  end
 end
   get 'cat_images/all' => 'cat_images#all'
   get 'cat_images/rank' => 'cat_images#rank'

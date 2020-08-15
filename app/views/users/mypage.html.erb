@@ -4,9 +4,8 @@ address:<%= @user.email %>
 　<% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
   <% end %>
-
+     <p><%= link_to "退会する", leave_user_path(@user), class: "pull-right" %></p>
 <br>
-
 
 
  <% @cat_images.each do |cat_image| %>

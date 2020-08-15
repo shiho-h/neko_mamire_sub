@@ -6,7 +6,11 @@
   <%= attachment_image_tag cat_image, :image, :size =>'480x320' %>
   <% end %>
   <%= cat_image.created_at.strftime('%Y/%m/%d %H:%M') %>
-  <%= cat_image.user.name %>
+    <% if cat_image.user.status == "退会済" %>
+      <%= "退会ユーザー" %>
+    <% else %>
+      <%= cat_image.user.name %>
+    <% end %>
   <%= cat_image.catname %>
   <%= cat_image.memo %>
   <%= link_to "#{cat_image.comments.count} コメント", cat_image_path(cat_image.id) %>

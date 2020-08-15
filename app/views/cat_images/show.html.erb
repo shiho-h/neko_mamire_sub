@@ -14,9 +14,14 @@
 
 
         <li>
-          <i class="fa fa-user"></i>By<a href="#">
-            <%= @cat_image.user.name %></a>
+          <i class="fa fa-user"></i>By
+            <% if @cat_image.user.status == "退会済" %>
+              <%= link_to "#{@cat_image.user.name}退会ユーザー", user_path(@cat_image.user_id) %>
+            <% else %>
+              <%= link_to "#{@cat_image.user.name}", user_path(@cat_image.user_id) %>
+            <% end %>
         </li>
+
         <li>
           memo:<%= @cat_image.memo %>
         </li>

@@ -9,4 +9,14 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_cat_images, through: :bookmarks, source: :cat_image
+
+  enum status: {
+  	会員: 0,
+  	退会済: 1
+  }
+
+   def active_for_authentication?
+  		super && (self.status === "会員")
+  end
+
 end

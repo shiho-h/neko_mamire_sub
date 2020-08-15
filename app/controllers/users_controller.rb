@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @cat_images = @user.cat_images.reverse_order
   end
 
   def edit
@@ -18,11 +20,22 @@ class UsersController < ApplicationController
   end
 
   def leave
+    @user = User.find(params[:id])
   end
+
+  def withdrawl
+    @user = User.find(current_user.id)
+    @user.update(status:"退会済")
+    reset_session
+    redirect_to root_path
+  end
+
+
+
 
   private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :status)
   end
 
 end
