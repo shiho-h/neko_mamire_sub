@@ -5,24 +5,25 @@ Rails.application.routes.draw do
 
     devise_for :users
   resources :admin_users, only: [:index, :show]
-  resources :users, only: [:edit, :update, :show] do
-  get 'mypage' , :on => :member
+  get 'users/:id/mypage' => 'users#mypage', as: 'mypage_user'
   get 'users/leave' => 'users#leave'
+  resources :users, only: [:edit, :update, :show]do
+
   member do
     get "leave"
     patch "withdrawl"
+    get "bookmark"
   end
 end
+
   get 'cat_images/all' => 'cat_images#all'
   get 'cat_images/rank' => 'cat_images#rank'
   resources :cat_images do
   	resource :favorites, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]
-    resource :bookmarks, only: [:create, :destroy] do
-      get 'bookmark' , :on => :member
+    resource :bookmarks, only: [:create, :destroy]
     end
 
-  end
   get 'homes/about'
   root to: 'homes#top'
   get 'homes/about' => 'homes#about'

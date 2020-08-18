@@ -4,6 +4,7 @@ class CatImage < ApplicationRecord
 	has_many :comments, dependent: :destroy
 	has_many :favorites, dependent: :destroy
 	has_many :bookmarks, dependent: :destroy
+	has_many :users, through: :bookmarks
 
 	acts_as_taggable
 

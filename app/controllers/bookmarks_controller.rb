@@ -13,8 +13,9 @@ class BookmarksController < ApplicationController
     redirect_to cat_image_path(cat_image), success: t('.flash.not_bookmark')
   end
 
-  def inedex
-  	@bookmark_cat_images = curre_user.bookmark_cat_images
+  def show
+  	@user = User.find(params[:user_id])
+    @bookmarks = Bookmark.where("user_id = ?", @user)
   end
 
 end
