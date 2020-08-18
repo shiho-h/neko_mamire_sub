@@ -1,51 +1,78 @@
-<h1>今月のうちねこ見てください</h1>
 
- <% @cat_images.each do |cat_image| %>
- 
- <%= link_to cat_image_path(cat_image.id) do %>
-  <%= attachment_image_tag cat_image, :image, :size =>'500x500' %>
-  <% end %>
-  <%= cat_image.created_at.strftime('%Y/%m/%d %H:%M') %>
-  <% if cat_image.user.status == "退会済" %>
-      <%= "退会ユーザー" %>
-    <% else %>
-      <%= cat_image.user.name %>
-    <% end %>
-  <%= cat_image.catname %>
-  <%= cat_image.memo %>
-  <%= link_to "#{cat_image.comments.count} コメント", cat_image_path(cat_image.id) %>
- 
- <% if cat_image.favorited_by?(current_user) %>
-  <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
-    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= cat_image.favorites.count %> ♥
-  <% end %>
-<% else %>
-  <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
-    <i class="fa fa-heart-o" aria-hidden="true"></i>
-    <%= cat_image.favorites.count %> ♡
-  <% end %>
+<div class="container">
 
-<% end %>
+    <h1 class="text-center">今月のうちねこ見てください</h1>
+<div class="row">
+  <div class="col-3"></div>
+      
+        <div class="col-6">
+          <div class="table-responsive">
+            <% @cat_images.each do |cat_image| %>
+            <table class="table table-bordered"  style="table-layout:fixed;">
+              <tbody>
 
+              <td style="width:100px;">
+                <div class="text-center">
+                  <%= link_to cat_image_path(cat_image.id) do %>
+                  <%= attachment_image_tag cat_image, :image, :size =>'150x150' %>
+                <% end %>
+              </div>
+              </td>
+
+
+              <td style="width:200px;">
+                <li><%= cat_image.created_at.strftime('%Y/%m/%d') %>
+                  <% if cat_image.user.status == "退会済" %>
+                    <%= "退会ユーザー" %>
+                  <% else %>
+                    <%= cat_image.user.name %>
+                  <% end %>
+                </li>
+
+                <li>catname:<%= cat_image.catname %></li>
+
+                <li>memo:<%= cat_image.memo %></li>
+
+                <div>
+                  <%= link_to "💭#{cat_image.comments.count}", cat_image_path(cat_image.id) %>
+
+                    <% if cat_image.favorited_by?(current_user) %>
+                      <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
+                        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                          <%= cat_image.favorites.count %> ♥
+                      <% end %>
+                    <% else %>
+                      <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
+                          <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            いいね<%= cat_image.favorites.count %> ♡
+                      <% end %>
+                    <% end %>
 <!-- お気に入り -->
- <% if cat_image.bookmark_by?(current_user) %>
-      <%= link_to cat_image_bookmarks_path(cat_image), method: :delete do %>
-      <%= cat_image.bookmarks.count %> ★
-      <% end %>
-  <% else %>
-      <%= link_to cat_image_bookmarks_path(cat_image), method: :post do %>
-      <%= cat_image.bookmarks.count %> ☆
-    <% end %>
-<% end %>
+                    <% if cat_image.bookmark_by?(current_user) %>
+                      <%= link_to cat_image_bookmarks_path(cat_image), method: :delete do %>
+                        <%= cat_image.bookmarks.count %> ★
+                      <% end %>
+                    <% else %>
+                      <%= link_to cat_image_bookmarks_path(cat_image), method: :post do %>
+                        <%= cat_image.bookmarks.count %> ☆
+                      <% end %>
+                    <% end %>
+                </div>
+<!-- tag -->
+                <div>
+                  <% cat_image.tag_list.each do |tag| %>
+                    #<%= link_to tag,cat_images_path(tag_name: tag) %>
+                  <% end %>
+                </div>
 
-タグ
-  <% cat_image.tag_list.each do |tag| %>
-  #<%= link_to tag,cat_images_path(tag_name: tag) %>
-  <% end %>
-
-
- <br>
-
-<% end %>
+              </td>
+              </tbody>
+            </table>
+            <br>
+        <% end %>
+          </div>
+        </div>
+        <div class="col-3"></div>
+</div>
+</div>
 <%= paginate @cat_images %>
