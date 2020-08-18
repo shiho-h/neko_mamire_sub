@@ -3,7 +3,7 @@
  <% @cat_images.each do |cat_image| %>
  
  <%= link_to cat_image_path(cat_image.id) do %>
-  <%= attachment_image_tag cat_image, :image, :size =>'480x320' %>
+  <%= attachment_image_tag cat_image, :image, :size =>'500x500' %>
   <% end %>
   <%= cat_image.created_at.strftime('%Y/%m/%d %H:%M') %>
   <% if cat_image.user.status == "退会済" %>
@@ -48,3 +48,4 @@
  <br>
 
 <% end %>
+<%= paginate @cat_images %>

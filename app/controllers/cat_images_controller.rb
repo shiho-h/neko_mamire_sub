@@ -1,11 +1,11 @@
 class CatImagesController < ApplicationController
   def index
-    @cat_images = CatImage.where(created_at: Time.now.all_month)
+    @cat_images = CatImage.where(created_at: Time.now.all_month).page(params[:page]).reverse_order
 
     if params[:tag_name]
-      @cat_images = CatImage.tagged_with("#{params[:tag_name]}")
+      @cat_images = CatImage.tagged_with("#{params[:tag_name]}").page(params[:page]).reverse_order
     end
-    
+
   end
 
   def show
@@ -41,7 +41,7 @@ class CatImagesController < ApplicationController
   end
 
   def all
-    @cat_images = CatImage.all
+    @cat_images = CatImage.page(params[:page]).reverse_order
   end
 
   def rank
