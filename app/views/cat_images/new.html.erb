@@ -1,14 +1,72 @@
-<%= form_for(@cat_image) do |f| %>
-  <% if @cat_image.errors.any? %>
-    <%= @cat_image.errors.count %>件のエラーが発生しました
-    <% @cat_image.errors.full_messages.each do |message| %>
-      <%= message %>
-    <% end %>
-  <% end %>
+<!DOCTYPE html>
+<html>
 
-  <%= f.attachment_field :image %>
-  catname: <%= f.text_field :catname %>
-  memo: <%= f.text_area :memo %>
-  tag: <%= f.text_field :tag_list, value: @cat_image.tag_list.join(',') %>
-  <%= f.submit %>
-<% end %>
+  <body>
+
+    <div class="container">
+
+        <h3 class="text-center">うちねことうこ～</h3>
+
+          <div class="row">
+            <div class="col-4"></div>
+
+        <div class="col-5">
+
+
+          <div class="row">
+            <%= form_for(@cat_image) do |f| %>
+
+              <div class="col-lg-4">
+
+                <% if @cat_image.errors.any? %>
+                  <%= @cat_image.errors.count %>件のエラーが発生しました
+                    <% @cat_image.errors.full_messages.each do |message| %>
+                      <%= message %>
+                    <% end %>
+                <% end %>
+
+                <%= attachment_image_tag @cat_image, :image, :fill, 300, 300, format: 'jpeg' %>
+                  <%= f.attachment_field :image, placeholder: "猫ちゃん" %>
+              </div>
+
+              <div class="col-lg-5">
+
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th>catname</th>
+                      <th><%= f.text_field :catname %></th>
+                    </tr>
+
+                    <tr>
+                      <th>memo</th>
+                      <th><%= f.text_area :memo %></th>
+                    </tr>
+
+                    <tr>
+                      <th>tag</th>
+                      <th><%= f.text_field :tag_list, value: @cat_image.tag_list.join(',') ,class: "form-control",placeholder: "タグ,タグ" %></th>
+                    </tr>
+                    <tr>
+                      <th>
+                      <%= f.submit "新規登録", class:"btn btn-primary btn-block" %></th>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-lg-3">
+              </div>
+
+            <% end %>
+          </div>
+
+      </div>
+
+      <div class="row">
+            <div class="col-3"></div>
+
+    </div>
+  </body>
+
+</html>

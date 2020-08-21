@@ -15,6 +15,15 @@
  */
 @import "bootstrap";
 
+@font-face {
+font-family: "hoge";
+src: font-url('azukiB.ttf') format('truetype');
+}
+
+* {
+	font-family: 'hoge';
+}
+
 .pagination {
 	 justify-content: center;
 }

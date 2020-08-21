@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamire</title>
+</head>
+<body>
+
+
+  <div class="container">
+      <div class="border" style="padding:20px; margin: 20px 200px 20px 200px;">
+        <h1 class="text-center">会員ステータス変更</h1>
+
+        <div class="row">
+        	<div class="col-4"></div>
+
+        		<div class="col-4">
+        			<div class="table-responsive">
+					
+					<%= form_for(@user, url: admin_user_path) do |f| %>
+
+						<table class="table table-bordered"  style="table-layout:fixed;">
+						<tr class="text-center">
+						<td><%= f.radio_button :status, :会員, checked: "checked" %>
+              				<%= f.label :member, "会員" %>
+              				<%= f.radio_button :status, :退会済 %>
+              				<%= f.label :unmember,"退会済み" %>
+              			</td>
+              			</tr>
+            			</table>
+            			<center>
+              				<%= f.submit '変更を保存する', class: "btn btn-primary" %>
+            			</center>
+            		<% end %>
+            		</div>
+            	</div>
+            <div class="col-4"></div>
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>

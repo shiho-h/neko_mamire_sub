@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+  before_action :authenticate_user!
+
   def create
   	cat_image = CatImage.find(params[:cat_image_id])
   	bookmark = current_user.bookmarks.new(cat_image_id: cat_image.id)

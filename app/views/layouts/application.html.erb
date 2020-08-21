@@ -1,3 +1,5 @@
+<script src="https://kit.fontawesome.com/7c6032e705.js" crossorigin="anonymous"></script>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,13 +10,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <div class="header" id="header" >
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
           <div class="navbar-brand">
-            <%= link_to image_tag('Free_Sample_By_Wix (1)'),'/' %>
+            <%= link_to image_tag('Free_Sample_By_Wix (1)', :size => '100x100'),'/' %>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sample">
           <span class="navbar-toggler-icon"></span>
@@ -43,7 +47,16 @@
 
               <% elsif admin_signed_in? %>
                 <li>
-                  <% link_to "ログアウト",destroy_admin_session_path, method: :delete %>
+                  <%= link_to "管理ログアウト",destroy_admin_session_path, method: :delete %>
+                </li>
+                <li class="">
+                  <%= link_to "TOP", root_path %>
+                </li>
+                <li class="">
+                  <%= link_to "うちねこ", cat_images_path %>
+                </li>
+                <li class="">
+                  <%= link_to "ランキング", cat_images_rank_path %>
                 </li>
 
               <% else %>
@@ -67,10 +80,18 @@
           </div>
         </div>
       </nav>
+    </div>
 
 
 
 
     <%= yield %>
+
+
+    <footer>
+      <div class="text-right">
+      <p>@nekomamire</p>
+    </div>
+    </footer>
   </body>
 </html>

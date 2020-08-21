@@ -1,6 +1,48 @@
-<h1>会員情報</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamire</title>
+</head>
+<body>
 
-<%= @user.id %>
-<%= @user.name %>
-<%= @user.email %>
-<%= @user.status %>
+
+  <div class="container">
+      <div class="border" style="padding:20px; margin: 20px;">
+        <h1 class="text-center">詳細</h1>
+
+        <div class="row">
+        	<div class="col-4"></div>
+
+        		<div class="col-4">
+        			<tbody>
+					<table class="table">
+        			<tr>
+         				<th>会員ID</th>
+         				<td><%= @user.id %></td>
+         			</tr>
+         			<tr>
+         				<th>氏名</th>
+         				<td><%= @user.name %></td>
+         			</tr>
+         			<tr>
+         				<th>メールアドレス</th>
+         				<td><%= @user.email %></td>
+         			</tr>
+         			<tr>
+         				<th>ステータス</th>
+         				<td><%= @user.status %></td>
+        			</tr>
+        			<%= link_to "ステータス変更", edit_admin_user_path(@user) %>
+
+
+					</table>
+   					</tbody>
+
+				</div>
+			<div class="col-4"></div>
+		</div>
+	  </div>
+  </div>
+
+</body>
+</html>

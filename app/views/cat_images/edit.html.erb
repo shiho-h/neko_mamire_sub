@@ -1,10 +1,55 @@
- <%= attachment_image_tag @cat_image, :image, :size =>'480x320' %>
 
-<%= form_for(@cat_image) do |f| %>
-  <h4>catname</h4>
-  <%= f.text_field :catname %>
-  <h4>memo</h4>
-  <%= f.text_field :memo %>
-  <%= f.text_field :tag_list, value: @cat_image.tag_list.join(',') %>
-  <%= f.submit '保存' %>
-<% end %>
+<!DOCTYPE html>
+<html>
+
+  <body>
+
+    <div class="container">
+
+        <h3 class="text-center">うちねこへんしゅ～</h3>
+
+          <div class="row">
+            <div class="col-2"></div>
+
+            <div class="col-8">
+                <table class="table table-bordered" style="table-layout:fixed;">
+          <tbody>
+            <td style="width:100px;">
+              <div class="text-center">
+                  <%= attachment_image_tag @cat_image, :image, :size => '150x150' %>
+              
+            </td>
+              	<%= form_for(@cat_image) do |f| %>
+
+                <td class= "text-align: left" style="width:150px;">
+                      <ul>
+                        <li>catname:
+                      <%= f.text_field :catname %></li><br>
+                      
+                      <li>memo:
+                      <%= f.text_area :memo %></li><br>
+                      <li>tag:
+                      <%= f.text_field :tag_list, value: @cat_image.tag_list.join(',') %></li><br>
+                    
+                    
+                    <li><%= f.submit "保存", class:"btn btn-primary btn-block btn-xs" %></li>
+                    </ul>
+
+                  
+                </td>
+              </tbody>
+            </table>
+              </div>
+
+            <% end %>
+          </div>
+
+      </div>
+
+      <div class="row">
+            <div class="col-2"></div>
+
+    </div>
+  </body>
+
+</html>

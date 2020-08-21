@@ -15,6 +15,10 @@ class User < ApplicationRecord
   	退会済: 1
   }
 
+
+
+
+
    def active_for_authentication?
   		super && (self.status === "会員")
   end

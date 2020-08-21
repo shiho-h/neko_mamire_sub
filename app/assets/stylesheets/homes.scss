@@ -1,3 +1,26 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.about-item {
+    text-align: center;
+    }
+ .about-item p {
+    display: inline-block;
+    text-align: left;
+    }
+
+
+.image1 {
+  background-image: url(cat458A8420_TP_V.jpg);
+}
+.image2 {
+  background-image: url(tom444DSC05184_TP_V.jpg);
+}
+.image3 {
+  background-image: url(tomcat1582_TP_V.jpg);
+}
+
+#container{
+  height: 500px;
+}

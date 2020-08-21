@@ -4,8 +4,8 @@ Rails.application.routes.draw do
    devise_for :admins, controllers: {sessions: 'admins/sessions'}
 
     devise_for :users
-  resources :admin_users, only: [:index, :show]
-  get 'users/:id/mypage' => 'users#mypage', as: 'mypage_user'
+  resources :admin_users, only: [:index, :show, :edit, :update]
+    get 'users/:id/mypage' => 'users#mypage', as: 'mypage_user'
   get 'users/leave' => 'users#leave'
   resources :users, only: [:edit, :update, :show]do
 

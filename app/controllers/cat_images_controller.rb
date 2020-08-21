@@ -1,4 +1,8 @@
 class CatImagesController < ApplicationController
+
+# before_action :authenticate_user!,except: [:index, :show, :all, :rank]
+
+
   def index
     @cat_images = CatImage.where(created_at: Time.now.all_month).page(params[:page]).reverse_order
 
@@ -41,11 +45,12 @@ class CatImagesController < ApplicationController
   end
 
   def all
-    @cat_images = CatImage.page(params[:page]).reverse_order
+    @cat_images = CatImage.page(params[:page])
   end
 
   def rank
     @all_ranks = CatImage.find(Favorite.group(:Cat_image_id).order('count(cat_image_id) desc').limit(10).pluck(:cat_image_id))
+    
   end
 
   def bookmarks

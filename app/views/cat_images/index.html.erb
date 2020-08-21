@@ -1,11 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamiretop</title>
+</head>
+<body>
 
-<div class="container">
 
-    <h1 class="text-center">今月のうちねこ見てください</h1>
-<div class="row">
-  <div class="col-3"></div>
-      
-        <div class="col-6">
+  <div class="container">
+      <div class="border" style="padding:20px; margin: 20px;">
+        <h1 class="text-center">今月のうちねこみてください</h1>
+          <div class="text-right">
+            +<%= link_to new_cat_image_path do %>
+            <i class="fas fa-cat fa-fw fa-4x"></i>
+            <% end %>
+          </div>
+
+
+            <div class="row">
+              <div class="col-2"></div>
+
+        <div class="col-8">
+
           <div class="table-responsive">
             <% @cat_images.each do |cat_image| %>
             <table class="table table-bordered"  style="table-layout:fixed;">
@@ -20,8 +35,12 @@
               </td>
 
 
-              <td style="width:200px;">
-                <li><%= cat_image.created_at.strftime('%Y/%m/%d') %>
+              <td style="width:200px; padding: 30px 20px 20px 30px">
+                <div class="v-align-middle">
+                <ul>
+                <li><i class="fa fa-calendar fa-fw"></i><%= cat_image.created_at.strftime('%Y/%m/%d') %></li>
+                <li><i class="fa fa-user fa-fw"></i>
+
                   <% if cat_image.user.status == "退会済" %>
                     <%= "退会ユーザー" %>
                   <% else %>
@@ -29,32 +48,36 @@
                   <% end %>
                 </li>
 
-                <li>catname:<%= cat_image.catname %></li>
+                <li>
+                  <i class="fas fa-cat fa-fw"></i>catname:<%= cat_image.catname %></li>
 
-                <li>memo:<%= cat_image.memo %></li>
+                <li><i class="fas fa-paw fa-fw"></i>memo:<%= cat_image.memo %></li>
 
-                <div>
-                  <%= link_to "💭#{cat_image.comments.count}", cat_image_path(cat_image.id) %>
+
+                <div> <i class="far fa-comment fa-fw"></i>
+                  <%= link_to cat_image.comments.count, cat_image_path(cat_image.id) %>
 
                     <% if cat_image.favorited_by?(current_user) %>
                       <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
-                        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                          <%= cat_image.favorites.count %> ♥
+                        <i class="fas fa-heart fa-fw"></i>
+                          <%= "#{cat_image.favorites.count}" %>
                       <% end %>
                     <% else %>
                       <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
-                          <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            いいね<%= cat_image.favorites.count %> ♡
+                          <i class="far fa-heart fa-fw" aria-hidden="true"></i>
+                            <%= "#{cat_image.favorites.count}" %>
                       <% end %>
                     <% end %>
 <!-- お気に入り -->
                     <% if cat_image.bookmark_by?(current_user) %>
                       <%= link_to cat_image_bookmarks_path(cat_image), method: :delete do %>
-                        <%= cat_image.bookmarks.count %> ★
+                      <i class="fas fa-bookmark fa-fw"></i>
+                        <%= "#{cat_image.bookmarks.count}" %>
                       <% end %>
                     <% else %>
                       <%= link_to cat_image_bookmarks_path(cat_image), method: :post do %>
-                        <%= cat_image.bookmarks.count %> ☆
+                      <i class="far fa-bookmark fa-fw"></i>
+                        <%= "#{cat_image.bookmarks.count}" %>
                       <% end %>
                     <% end %>
                 </div>
@@ -64,7 +87,8 @@
                     #<%= link_to tag,cat_images_path(tag_name: tag) %>
                   <% end %>
                 </div>
-
+              </ul>
+            </div>
               </td>
               </tbody>
             </table>
@@ -72,7 +96,11 @@
         <% end %>
           </div>
         </div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
 </div>
 </div>
+</div>
+
 <%= paginate @cat_images %>
+</body>
+</html>
