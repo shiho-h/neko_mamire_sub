@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <div class="header" id="header" >
+    <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
           <div class="navbar-brand">
@@ -25,23 +25,23 @@
           </button>
 
           <div class="collapse navbar-collapse justify-content-around" id="navbarNav">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav mr-auto">
 
               <% if user_signed_in? %>
                 <li class="">
-                  <%= link_to "TOP", root_path %>
+                  <i class="far fa-check-square"></i><%= link_to "TOP", root_path %>
                 </li>
                 <li class="">
-                  <%= link_to 'マイページ', user_path(current_user.id) %>
+                  <i class="far fa-check-square"></i><%= link_to 'マイページ', user_path(current_user.id) %>
                 </li>
                 <li class="">
-                  <%= link_to "うちねこ", cat_images_path %>
+                  <i class="far fa-check-square"></i><%= link_to "うちねこ", cat_images_path %>
                 </li>
                 <li class="">
-                  <%= link_to "ランキング", cat_images_rank_path %>
+                  <i class="far fa-check-square"></i><%= link_to "ランキング", cat_images_rank_path %>
                 </li>
                 <li class="">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                  <i class="far fa-check-square"></i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
                 </li>
 
 
@@ -80,7 +80,7 @@
           </div>
         </div>
       </nav>
-    </div>
+    </header>
 
 
 

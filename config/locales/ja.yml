@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    attributes:
+      cat_image:
+        catname: 猫の名前
+        memo: メモ
+        image: 画像
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード

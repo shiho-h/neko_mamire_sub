@@ -16,13 +16,14 @@
 #container{
   height: 500px;
 }
+
 .image1 {
-  background-image: url('images/cat458A8420_TP_V.jpg');
+  background-image: image-url('cat458A8420_TP_V.jpg');
 }
 .image2 {
-  background-image: url('images/tom444DSC05184_TP_V.jpg');
+  background-image: image-url('tom444DSC05184_TP_V.jpg');
 }
 .image3 {
-  background-image: url('images/tomcat1582_TP_V.jpg');
+  background-image: image-url('tomcat1582_TP_V.jpg');
 }
 

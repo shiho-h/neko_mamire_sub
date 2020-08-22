@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user!
 
 	def create
 	cat_image = CatImage.find(params[:cat_image_id])

@@ -24,8 +24,11 @@ class CatImagesController < ApplicationController
   def create
     @cat_image = CatImage.new(cat_image_params)
     @cat_image.user_id = current_user.id
-    @cat_image.save
+    if @cat_image.save
     redirect_to cat_images_path
+  else
+    render :new
+  end
   end
 
   def edit

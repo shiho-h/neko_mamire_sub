@@ -10,16 +10,16 @@
           <div class="row">
             <div class="col-4"></div>
 
-        <div class="col-5">
+            <div class="col-5">
 
 
           <div class="row">
             <%= form_for(@cat_image) do |f| %>
 
-              <div class="col-lg-4">
+              <div class="col">
 
                 <% if @cat_image.errors.any? %>
-                  <%= @cat_image.errors.count %>件のエラーが発生しました
+                  <%= @cat_image.errors.count %>件のエラーが発生しました<br>
                     <% @cat_image.errors.full_messages.each do |message| %>
                       <%= message %>
                     <% end %>
@@ -29,7 +29,7 @@
                   <%= f.attachment_field :image, placeholder: "猫ちゃん" %>
               </div>
 
-              <div class="col-lg-5">
+              <div class="col">
 
                 <table class="table">
                   <tbody>
@@ -54,11 +54,11 @@
                   </tbody>
                 </table>
               </div>
-
-              <div class="col-lg-3">
+              <% end %>
+              <div class="col">
               </div>
 
-            <% end %>
+          
           </div>
 
       </div>
