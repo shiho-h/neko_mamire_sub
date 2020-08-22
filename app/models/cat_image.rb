@@ -5,11 +5,11 @@ class CatImage < ApplicationRecord
 	has_many :favorites, dependent: :destroy
 	has_many :bookmarks, dependent: :destroy
 	has_many :users, through: :bookmarks
-	
+
 	validates :image, presence: true
 	validates :catname, presence: true
 	validates :memo, presence: true
-	
+
 
 
 
