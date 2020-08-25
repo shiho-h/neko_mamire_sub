@@ -44,20 +44,9 @@
 
         <!-- いいね関係 --><li>
                   <% if signed_in? %>
-                        <% if @cat_image.favorited_by?(current_user) %>
-                            <i class="fa fa-heart fa-fw" aria-hidden="true" style="color: red;"></i>
-                            <%= "#{@cat_image.favorites.count}" %>
-                            <%= link_to cat_image_favorites_path(@cat_image), method: :delete do %>
-                               <%= "いいね済" %>
-                            <% end %>
-                        <% else %>
-                            <i class="fas fa-heart fa-fw"></i>
-                            <%= "#{@cat_image.favorites.count}" %>
-                            <%= link_to cat_image_favorites_path(@cat_image), method: :post do %>
-                               <%= "いいね" %>
-                            <% end %>
-                          </li>
-                        <% end %>
+                        <span id="favorites_buttons_<%= @cat_image.id %>">
+                     <%= render 'cat_images/favorite', cat_image: @cat_image %>
+                   </span>
                   <% else %>
                     <i class="far fa-heart fa-fw"></i>
                       <%= "#{@cat_image.favorites.count}" %>
@@ -71,19 +60,9 @@
 
                           <li>
                   <% if signed_in? %>
-                            <% if @cat_image.bookmark_by?(current_user) %>
-                              <i class="fas fa-bookmark fa-fw"></i>
-                              <%= "#{@cat_image.bookmarks.count}" %>
-                              <%= link_to cat_image_bookmarks_path(@cat_image), method: :delete do %>
-                               <%= "お気に入り登録から外す" %>
-                              <% end %>
-                            <% else %>
-                              <i class="far fa-bookmark fa-fw"></i>
-                              <%= "#{@cat_image.bookmarks.count}" %>
-                              <%= link_to cat_image_bookmarks_path(@cat_image), method: :post do %>
-                              <%= "お気に入りに登録する" %>
-                              <% end %>
-                            <% end %>
+                            <span id="bookmarks_buttons_<%= @cat_image.id %>">
+                  <%= render 'cat_images/bookmark', cat_image: @cat_image %>
+                </span>
                   <% else %>
                     <i class="far fa-bookmark fa-fw"></i>
                       <%= "#{@cat_image.bookmarks.count}" %>
