@@ -5,13 +5,13 @@ class UsersController < ApplicationController
 
 
 
-  def mypage
-    user = current_user
-    @cat_images = user.cat_images.all
-    @user = User.find(params[:id])
-    @cat_image = @user.cat_images.all
-    @bookmarks = Bookmark.where("user_id = ?", @user)
-  end
+  # def mypage
+  #   user = current_user
+  #   @cat_images = user.cat_images.all
+  #   @user = User.find(params[:id])
+  #   @cat_image = @user.cat_images.all
+  #   @bookmarks = Bookmark.where("user_id = ?", @user)
+  # end
 
   def show
     @user = User.find_by(id: params[:id])
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if
+  if
     @user.update(user_params)
     redirect_to user_path(@user.id)
   else

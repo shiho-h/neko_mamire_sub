@@ -6,9 +6,17 @@
 <body>
 
 
-  <div class="container">
+  <div class="container-fluid">
       <div class="border" style="padding:20px; margin: 20px;">
         <h1 class="text-center">うちねこいいねらんく</h1>
+
+          <div class="border" style="padding:10px;">
+            <p class="text-center"> ここは投稿されたうちネコ画像のいいねランキングです。
+          上位１０位まで随時更新されていきます。<br>
+          投稿したネコちゃんがランキング入りしているかぜひチェックしてみてください☆
+            </p>
+          </div>
+
 
           <div class="row">
             <div class="col-2"></div>
@@ -22,7 +30,7 @@
                     <tbody>
                       <i class="fas fa-crown"></i>
                       <%= i+1 %>位
-                      <td style="width:100px;">
+                      <td style="width:100px; padding: 30px 20px 20px 30px">
                         <div class="text-center"><%= link_to cat_image_path(cat_image.id) do %>
   		                    <%= attachment_image_tag cat_image, :image, :size =>'150x150' %>
   	                       <% end %>
@@ -30,57 +38,67 @@
                              </td>
 
                               <td style="width:200px; padding: 30px 20px 20px 30px">
-                <ul>
-                <li><i class="fa fa-calendar fa-fw"></i><%= cat_image.created_at.strftime('%Y/%m/%d') %></li>
-                <li><i class="fa fa-user fa-fw"></i>
+                          <ul>
+                          <li><i class="fa fa-calendar fa-fw"></i><%= cat_image.created_at.strftime('%Y/%m/%d') %></li>
+                          <li><i class="fa fa-user fa-fw"></i>
 
-                  <% if cat_image.user.status == "退会済" %>
-                    <%= "退会ユーザー" %>
-                  <% else %>
-                    <%= cat_image.user.name %>
-                  <% end %>
-                </li>
+                            <% if cat_image.user.status == "退会済" %>
+                              <%= "退会ユーザー" %>
+                            <% else %>
+                              <%= cat_image.user.name %>
+                            <% end %>
+                          </li>
 
-                <li>
-                  <i class="fas fa-cat fa-fw"></i>catname:<%= cat_image.catname %></li>
+                          <li>
+                            <i class="fas fa-cat fa-fw"></i>catname:<%= cat_image.catname %></li>
 
-                <li><i class="fas fa-paw fa-fw"></i>memo:<%= cat_image.memo %></li>
-              
+                          <li><i class="fas fa-paw fa-fw"></i>memo:<%= cat_image.memo %></li>
+                        
 
-                <div> <i class="far fa-comment fa-fw"></i>
-                  <%= link_to cat_image.comments.count, cat_image_path(cat_image.id) %>
+                          <div> <i class="far fa-comment fa-fw"></i>
+                            <%= link_to cat_image.comments.count, cat_image_path(cat_image.id) %>
 
-                    <% if cat_image.favorited_by?(current_user) %>
-                      <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
-                        <i class="fas fa-heart fa-fw"></i>
-                          <%= "#{cat_image.favorites.count}" %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
-                          <i class="far fa-heart fa-fw" aria-hidden="true"></i>
-                            <%= "#{cat_image.favorites.count}" %>
-                      <% end %>
-                    <% end %>
-<!-- お気に入り -->
-                    <% if cat_image.bookmark_by?(current_user) %>
-                      <%= link_to cat_image_bookmarks_path(cat_image), method: :delete do %>
-                      <i class="fas fa-bookmark fa-fw"></i>
-                        <%= "#{cat_image.bookmarks.count}" %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to cat_image_bookmarks_path(cat_image), method: :post do %>
-                      <i class="far fa-bookmark fa-fw"></i>
-                        <%= "#{cat_image.bookmarks.count}" %>
-                      <% end %>
-                    <% end %>
-                </div>
-<!-- tag -->
-                <div>
-                  <% cat_image.tag_list.each do |tag| %>
-                    #<%= link_to tag,cat_images_path(tag_name: tag) %>
-                  <% end %>
-                </div>
-              </ul>
+                             <% if signed_in? %>
+                              <% if cat_image.favorited_by?(current_user) %>
+                                <%= link_to cat_image_favorites_path(cat_image), method: :delete do %>
+                                  <i class="fas fa-heart fa-fw"></i>
+                                    <%= "#{cat_image.favorites.count}" %>
+                                <% end %>
+                              <% else %>
+                                <%= link_to cat_image_favorites_path(cat_image), method: :post do %>
+                                    <i class="far fa-heart fa-fw" aria-hidden="true"></i>
+                                      <%= "#{cat_image.favorites.count}" %>
+                                <% end %>
+                              <% end %>
+                             <% else %>
+                              <i class="far fa-heart fa-fw"></i>
+                                <%= "#{cat_image.favorites.count}" %>
+                            <% end %>
+          <!-- お気に入り -->
+                             <% if signed_in? %>
+                              <% if cat_image.bookmark_by?(current_user) %>
+                                <%= link_to cat_image_bookmarks_path(cat_image), method: :delete do %>
+                                <i class="fas fa-bookmark fa-fw"></i>
+                                  <%= "#{cat_image.bookmarks.count}" %>
+                                <% end %>
+                              <% else %>
+                                <%= link_to cat_image_bookmarks_path(cat_image), method: :post do %>
+                                <i class="far fa-bookmark fa-fw"></i>
+                                  <%= "#{cat_image.bookmarks.count}" %>
+                                <% end %>
+                              <% end %>
+                             <% else %>
+                              <i class="far fa-bookmark fa-fw"></i>
+                                  <%= "#{cat_image.bookmarks.count}" %>
+                             <% end %>
+                          </div>
+          <!-- tag -->
+                          <div>
+                            <% cat_image.tag_list.each do |tag| %>
+                              #<%= link_to tag,cat_images_path(tag_name: tag) %>
+                            <% end %>
+                          </div>
+                        </ul>
 
               </td>
               </tbody>

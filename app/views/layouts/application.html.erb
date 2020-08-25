@@ -47,33 +47,31 @@
 
               <% elsif admin_signed_in? %>
                 <li>
-                  <%= link_to "管理ログアウト",destroy_admin_session_path, method: :delete %>
+                  <i class="far fa-check-square"></i><%= link_to "管理ログアウト",destroy_admin_session_path, method: :delete %>
                 </li>
-                <li class="">
-                  <%= link_to "TOP", root_path %>
+                <li>
+                  <i class="far fa-check-square"></i><%= link_to "会員一覧",admin_users_path %>
                 </li>
+
                 <li class="">
-                  <%= link_to "うちねこ", cat_images_path %>
-                </li>
-                <li class="">
-                  <%= link_to "ランキング", cat_images_rank_path %>
+                  <i class="far fa-check-square"></i><%= link_to "TOP", root_path %>
                 </li>
 
               <% else %>
                 <li class="">
-                  <%= link_to "TOP", root_path %>
+                  <i class="far fa-check-square"></i><%= link_to "TOP", root_path %>
                 </li>
                 <li class="">
-                  <%= link_to "うちねこ", cat_images_path %>
+                  <i class="far fa-check-square"></i><%= link_to "うちねこ", cat_images_path %>
                 </li>
                 <li class="">
-                  <%= link_to "ランキング", cat_images_rank_path %>
+                  <i class="far fa-check-square"></i><%= link_to "ランキング", cat_images_rank_path %>
                 </li>
                 <li class="">
-                  <%= link_to "新規登録", new_user_registration_path %>
+                  <i class="far fa-check-square"></i><%= link_to "新規登録", new_user_registration_path %>
                 </li>
                 <li class="">
-                  <%= link_to "ログイン", new_user_session_path %>
+                  <i class="far fa-check-square"></i><%= link_to "ログイン", new_user_session_path %>
                 </li>
               <% end %>
             </ul>
@@ -90,7 +88,7 @@
 
     <footer>
       <div class="text-right">
-      <p>@nekomamire</p>
+      <p>©neko_mamire</p>
     </div>
     </footer>
   </body>

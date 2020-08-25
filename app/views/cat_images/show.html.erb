@@ -1,6 +1,6 @@
 <script src="https://kit.fontawesome.com/7c6032e705.js" crossorigin="anonymous"></script>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="border" style="padding:10px;">
        <h1 class="text-center">しょ～さい</h1>
 
@@ -43,6 +43,7 @@
 
 
         <!-- いいね関係 --><li>
+                  <% if signed_in? %>
                         <% if @cat_image.favorited_by?(current_user) %>
                             <i class="fa fa-heart fa-fw" aria-hidden="true" style="color: red;"></i>
                             <%= "#{@cat_image.favorites.count}" %>
@@ -57,6 +58,10 @@
                             <% end %>
                           </li>
                         <% end %>
+                  <% else %>
+                    <i class="far fa-heart fa-fw"></i>
+                      <%= "#{@cat_image.favorites.count}" %>
+                  <% end %>
 
                           <li>
                             <i class="fa fa-comment fa-fw"></i>
@@ -65,6 +70,7 @@
                           </li>
 
                           <li>
+                  <% if signed_in? %>
                             <% if @cat_image.bookmark_by?(current_user) %>
                               <i class="fas fa-bookmark fa-fw"></i>
                               <%= "#{@cat_image.bookmarks.count}" %>
@@ -78,6 +84,10 @@
                               <%= "お気に入りに登録する" %>
                               <% end %>
                             <% end %>
+                  <% else %>
+                    <i class="far fa-bookmark fa-fw"></i>
+                      <%= "#{@cat_image.bookmarks.count}" %>
+                  <% end %>
                           </li>
 
                           <li>

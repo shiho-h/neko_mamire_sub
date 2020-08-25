@@ -1,6 +1,6 @@
 class CatImagesController < ApplicationController
 
-# before_action :authenticate_user!,except: [:index, :show, :all, :rank]
+before_action :authenticate_user!,except: [:index, :show, :all, :rank]
 
 
   def index
@@ -10,7 +10,9 @@ class CatImagesController < ApplicationController
       @cat_images = CatImage.tagged_with("#{params[:tag_name]}").page(params[:page]).reverse_order
     end
 
-  end
+    @tags = ActsAsTaggableOn::Tag.all
+
+end
 
   def show
     @cat_image = CatImage.find(params[:id])
@@ -25,9 +27,9 @@ class CatImagesController < ApplicationController
     @cat_image = CatImage.new(cat_image_params)
     @cat_image.user_id = current_user.id
     if @cat_image.save
-    redirect_to cat_images_path
+    redirect_to cat_images_path, notice:"投稿できたにゃ"
   else
-    render :new
+    render 'new'
   end
   end
 
@@ -38,7 +40,8 @@ class CatImagesController < ApplicationController
   def update
     cat_image = CatImage.find(params[:id])
     cat_image.update(cat_image_params)
-    redirect_to cat_image_path(cat_image)
+      redirect_to cat_image_path(cat_image)
+    
   end
 
   def destroy
@@ -49,11 +52,11 @@ class CatImagesController < ApplicationController
 
   def all
     @cat_images = CatImage.page(params[:page])
+    @tags = ActsAsTaggableOn::Tag.all
   end
 
   def rank
     @all_ranks = CatImage.find(Favorite.group(:Cat_image_id).order('count(cat_image_id) desc').limit(10).pluck(:cat_image_id))
-    
   end
 
   def bookmarks
