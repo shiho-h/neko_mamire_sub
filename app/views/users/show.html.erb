@@ -22,13 +22,13 @@
                   <table class="table table-bordered"  style="table-layout:fixed;">
                      <td style="width:100px; padding: 50px">
                       <div class="text-center">
-                   
+
                       <%= "address: #{@user.email}" %><br>
 
-            <%= link_to "編集", edit_user_path(@user), class: 'btn btn-info btn-xs' %>
-              <%= link_to "退会する", leave_user_path(@user), class: 'btn btn-info btn-xs' %>
-          <%= link_to "お気に入り一覧", bookmark_user_path(@user), class: 'btn btn-info btn-xs' %>
-                    
+                      <%= link_to "編集", edit_user_path(@user), class: 'btn btn-info btn-xs' %>
+                      <%= link_to "退会する", leave_user_path(@user), class: 'btn btn-info btn-xs' %>
+                      <%= link_to "お気に入り一覧", bookmark_user_path(@user), class: 'btn btn-info btn-xs' %>
+
                      </div>
                     </td>
                   </table>
