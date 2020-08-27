@@ -41,7 +41,7 @@ end
     cat_image = CatImage.find(params[:id])
     cat_image.update(cat_image_params)
       redirect_to cat_image_path(cat_image)
-    
+
   end
 
   def destroy
