@@ -1,2 +1,53 @@
-<h1>CatImages#index</h1>
-<p>Find me in app/views/cat_images/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamiretop</title>
+</head>
+<body>
+
+
+  <div class="container-fluid">
+      <div class="border" style="padding:20px; margin: 20px;">
+        <h1 class="text-center">今月のうちねこみてください</h1>
+        <div class="border" style="padding:10px;">
+            <p class="text-center">
+
+            ここではネコちゃんの見てコレ！な瞬間の画像を見ることができます。<br>
+            あなたの周りのネコちゃんのかわいい・おもしろい・びっくりな瞬間の画像をお待ちしております。<br>
+            お気に入りのネコちゃんを見つけたらぜひイイネやコメント、お気に入り登録を。<br>
+            お気に入りのネコちゃんをツイッターでみんなに教えてあげましょう☆<br>
+            毎月1日にリセットされます。今までの投稿は下のallから見ることができます。
+            </p>
+          </div>
+
+
+          <div class="text-right">
+            +<%= link_to new_cat_image_path do %>
+            <i class="fas fa-cat fa-fw fa-4x"></i>
+            <% end %>
+            all<%= link_to cat_images_all_path do %>
+            <i class="fas fa-cat fa-fw fa-4x"></i>
+            <% end %>
+          </div>
+
+
+            <div class="row">
+              <div class="col-2">
+                <% @tags.each do |tag| %>
+                <%= link_to "#{tag.name}(#{tag.taggings_count})", cat_images_path(tag_name: tag.name), class: "label label-default" %>
+                <% end %>
+
+              </div>
+
+        <div class="col-8">
+
+        <%= render 'cat_images/list', cat_images: @cat_images %>
+      </div>
+        <div class="col-2"></div>
+</div>
+</div>
+</div>
+
+<%= paginate @cat_images %>
+</body>
+</html>

@@ -1,2 +1,2 @@
-class Catimage < ApplicationRecord
+class CatImage < ApplicationRecord
 end

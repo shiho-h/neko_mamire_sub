@@ -1,2 +1,31 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container-fluid">
+  <div class="border" style="padding:50px; margin: 100px;">
+  <h1 class="text-center">プロフィール編集</h1>
+  <div class="row">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+    	<div class="table-responsive">
+		<%= form_for(@user) do |f| %>
+
+
+		 <table class="table table-bordered"  style="table-layout:fixed;">
+              <tbody>
+              	<div class="text-center">
+  				<h4><i class="fa fa-user fa-fw"></i>
+  				name</h4>
+  					<%= f.text_field :name %>
+  				<h4><i class="fa fa-user fa-fw"></i>address</h4>
+  					<%= f.email_field :email %>
+  					<%= f.submit '保存' %>
+  				</div>
+
+			  </tbody>
+		</table>
+		<% end %>
+		</div>
+	</div>
+	<div class="col-3"></div>
+  </div>
+  </div>
+</div>

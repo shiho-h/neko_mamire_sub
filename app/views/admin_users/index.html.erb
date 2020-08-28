@@ -1,2 +1,52 @@
-<h1>AdminUsers#index</h1>
-<p>Find me in app/views/admin_users/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamire</title>
+</head>
+<body>
+
+
+  <div class="container-fluid">
+      <div class="border" style="padding:20px; margin: 20px;">
+        <h1 class="text-center">会員一覧</h1>
+
+        <div class="row">
+        	<div class="col-2"></div>
+
+        		<div class="col-8">
+					<table class="table">
+      					<thead>
+        				<tr class= "active">
+         				<th>会員ID</th>
+         				<th>氏名</th>
+         				<th>メールアドレス</th>
+         				<th>ステータス</th>
+        				</tr>
+      					</thead>
+
+
+   					<% @users.each do |user| %>
+   						<tbody>
+      						<tr>
+      						<td><%= user.id %></td>
+							<td><%= link_to(admin_user_path(user), class: "name")  do %>
+							<%= user.name %></div>
+ 								<% end %>
+ 							</td>
+ 							<td><%= user.email %></td>
+							<td><%= user.status %></td>
+ 					<% end %>
+
+   							</tr>
+
+   						</tbody>
+
+					</table>
+				</div>
+			<div class="col-2"></div>
+		</div>
+	  </div>
+  </div>
+
+</body>
+</html>

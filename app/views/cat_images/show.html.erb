@@ -1,2 +1,134 @@
-<h1>CatImages#show</h1>
-<p>Find me in app/views/cat_images/show.html.erb</p>
+<script src="https://kit.fontawesome.com/7c6032e705.js" crossorigin="anonymous"></script>
+
+    <div class="container-fluid">
+      <div class="border" style="padding:10px;">
+       <h1 class="text-center">しょ～さい</h1>
+
+            <div class="d-flex justify-content-center">
+
+              <div class="d-flex flex-row bd-highlight mb-3">
+
+                <div class="p-2 bd-highlight"> <%= attachment_image_tag @cat_image, :image, :size =>'300x300' %></div>
+
+                  <div class="p-2 bd-highlight"></div>
+                  <div class="p-2 bd-highlight"></div>
+
+                  <div class="align-self-center">
+
+                    <ul>
+                      <li>
+                      <i class="fa fa-user fa-fw"></i>
+                      <%= "By" %>
+                        <% if @cat_image.user.status == "退会済" %>
+                          <%= "退会ユーザー" %>
+                        <% else %>
+                          <%= link_to "#{@cat_image.user.name}", user_path(@cat_image.user_id) %>
+                        <% end %>
+                      </li>
+
+                      <li>
+                        <i class="fas fa-cat fa-fw"></i>
+                        <%= "catname ： #{@cat_image.catname}" %>
+                      </li>
+
+                      <li>
+                    <i class="fas fa-paw fa-fw"></i>
+                    <%= "memo　:　#{@cat_image.memo}" %>
+                  </li>
+
+                  <li>
+                    <i class="fa fa-calendar fa-fw"></i>
+                    <%= "#{@cat_image.created_at.strftime('%Y/%m/%d')}" %>
+                    </li>
+
+
+        <!-- いいね関係 --><li>
+                  <% if signed_in? %>
+                        <span id="favorites_buttons_<%= @cat_image.id %>">
+                     <%= render 'cat_images/favorite', cat_image: @cat_image %>
+                   </span>
+                  <% else %>
+                    <i class="far fa-heart fa-fw"></i>
+                      <%= "#{@cat_image.favorites.count}" %>
+                  <% end %>
+
+                          <li>
+                            <i class="fa fa-comment fa-fw"></i>
+                              <%= "#{@cat_image.comments.count}" %>
+                              <%= "件" %>
+                          </li>
+
+                          <li>
+                  <% if signed_in? %>
+                            <span id="bookmarks_buttons_<%= @cat_image.id %>">
+                  <%= render 'cat_images/bookmark', cat_image: @cat_image %>
+                </span>
+                  <% else %>
+                    <i class="far fa-bookmark fa-fw"></i>
+                      <%= "#{@cat_image.bookmarks.count}" %>
+                  <% end %>
+                          </li>
+
+                          <li>
+                            <% @cat_image.tag_list.each do |tag| %>
+                              #<%= link_to tag,cat_images_path(tag_name: tag) %>
+                            <% end %>
+                          </li>
+                          <li></li>
+
+                          <li>
+                          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="お気に入りのネコちゃんです。" data-hashtags="#うちねこ見て" data-lang="ja" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </li>
+                      </ul>
+                    </div>
+
+                      <div class="align-self-end">
+                       <% if @cat_image.user == current_user %>
+                          <ul>
+                          <li><%= link_to "編集", edit_cat_image_path(@cat_image) %>｜
+                            <%= link_to "削除", cat_image_path(@cat_image), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+                        <% end %>
+                          </li>
+                        </ul>
+
+                        </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+<!-- コメント -->
+
+    <%= form_for [@cat_image, @comment] do |f| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.text_area :message, rows:'5', class: "form-control",placeholder: "コメントを入力してください" %>
+        </div>
+      </div>
+        <%= f.submit "送信する", class: "btn btn-outline-secondary btn-sm" %>
+    <% end %>
+
+    <% @cat_image.comments.each do |comment| %>
+      <i class="fal fa-comments"></i>
+        <%= comment.created_at.strftime('%Y/%m/%d') %> 
+        <%= comment.user.name %>さん
+        <%= comment.message %>
+      <% if comment.user == current_user %>
+        <div>
+          <%= link_to "削除", cat_image_comment_path(comment.cat_image, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' },class: "btn btn-outline-danger btn-sm" %>
+        </div>
+      <% end %>
+      <br>
+    <% end %>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+

@@ -1,2 +1,36 @@
-<h1>Users#leave</h1>
-<p>Find me in app/views/users/leave.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nekomamire</title>
+</head>
+<body>
+
+
+  <div class="container-fluid">
+      <div class="border" style="padding:20px; margin: 20px 200px 20px 200px;">
+        <h1 class="text-center">退会ページ</h1>
+         	<div class="row">
+            	<div class="col-2"></div>
+
+        		<div class="col-8">
+
+          			<div class="table-responsive">
+            			<table class="text-center">
+							<p>退会をすると投稿・お気に入り・コメント・いいねはできなくなります。</p>
+							<p>退会をしても投稿画像はのこります。投稿名は「退会ユーザー」と表示されます。</p>
+							<p>投稿を削除したい場合は、必ず退会前にご自身で削除をお願いします。</p>
+
+
+
+ 							<div class="text-center">
+ 							<%= link_to "退会する", withdrawl_user_path(@user.id), method: :patch, class:'btn btn-warning' %>
+ 						</div>
+						</table>
+					</div>
+				</div>
+				<div class="col-2"></div>
+			</div>
+	  </div>
+  </div>
+</body>
+</html>

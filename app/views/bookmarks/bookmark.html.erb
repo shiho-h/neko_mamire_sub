@@ -1,0 +1,5 @@
+お気に入り一覧
+  <% @user.cat_images.each do |cat_image| %>
+            <%= cat_image.user.name %>
+            <%= cat_image.catname %>
+        <% end %>

@@ -13,4 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap";
+
+@font-face {
+font-family: "hoge";
+src: font-url('azukiB.ttf') format('truetype');
+}
+
+* {
+	font-family: 'hoge';
+}
+
+.pagination {
+	 justify-content: center;
+}
+
+body {
+	background-image: image-url('a29dd8e7.png' );
+}
