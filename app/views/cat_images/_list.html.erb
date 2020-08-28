@@ -21,7 +21,7 @@
                   <% if cat_image.user.status == "退会済" %>
                     <%= "退会ユーザー" %>
                   <% else %>
-                    <%= cat_image.user.name %>
+                    <%= link_to "#{cat_image.user.name}", user_path(cat_image.user_id) %>
                   <% end %>
                 </li>
 
